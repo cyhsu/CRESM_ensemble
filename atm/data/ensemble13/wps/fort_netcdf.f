@@ -1,0 +1,1 @@
+/home/chsu1/scratch/GOM_FORECAST/cpl/run/routine_run_01_crontab/atm/data/wps/fort_netcdf.f

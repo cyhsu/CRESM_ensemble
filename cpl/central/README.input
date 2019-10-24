@@ -1,0 +1,92 @@
+# ______________________________________________________________________
+# Written By    : Chuan-Yuan Hsu (chsu1@tamu.edu)
+#                 Oceanography Department, TAMU.
+# Date          : Sep/23/2017
+# Package       : CRESM
+# Copyright     : see cresm_manual.pdf
+# Modifications : None
+# ______________________________________________________________________
+
+ Description: Input files for CRESM GOM FORECAST 
+              CRESM code version 1.0.0.
+
+ Features: Model start Date : Today
+           Model Run Time   : 7 days
+
+ File Types : 23 : *.nml *.in *_in *.input *.job  rpointer.* *.rc *.dat *.prescribed
+               9 : *.nc
+               3 : wrf*
+               1 : README
+                    --> total 36 files
+ 
+ List of Files
+ ++++++++++++++
+ -ROMS Input #-- Control by ocn/data_routine_cpl_run/roms_copernicus.sh --
+				 #-- Functions (AUTO) : 															--
+				 #-- 	1. Download copernicus data									--
+				 #--	2. Update the xroms SST.										--
+				 #--	3. Create initial/boundary condition of ROMS				-- 
+    gom03_grd_N050_md15m.nc
+	 copernicus_forecast_ic_GOM_Copernicus.nc
+	 copernicus_forecast_bdry_GOM_Copernicus.nc
+    ocean.in						#- ** Maybe need to updated with time **
+										#- updated variables:
+										#-
+										#- 			NTIMES or TIME_REF
+    varinfo.dat
+   
+ -xroms/data ocean
+    domain.txglo.nc
+    gom03_xroms_sstice.nc		#- !! it is auto-updated by xroms.py !!- 
+    docn.streams.txt.prescribed
+    seq_maps.rc
+
+ -mapping files
+    map_a2o_aave.nc
+    map_a2o_blin.nc
+    map_o2a_aave.nc				#- maping file, no need to change
+ 
+ -WRF input  #--	Control by  atm/run_atm.sh										--
+				 #--	Functions (AUTO) : 														--
+				 #--		1. Download GFS Forecast via ada-ftn1					--
+				 #--		2. Update namelist.wps (WPS) namelist.input (WRF)	--
+				 #--		3. Create WRF-	bdy_d01	input_d01	lowinp_d01		--
+				 #
+    wrfbdy_d01
+    wrfinput_d01
+    wrflowinp_d01
+    namelist.input				#- WRF files, it's modified by WPS auto system.
+										#- C.Y. Hsu (2017-09-23)
+   
+ -CRESM input
+    atm_modelio.nml
+    glc_modelio.nml
+    lnd_modelio.nml
+    cpl_modelio.nml
+    ice_modelio.nml
+    ocn_modelio.nml				#- I actually have no clue what are the functions
+										#- for these files. But the detail of them are clear
+										#- to me with no change. 
+										#- C.Y. Hsu (2017-09-23)
+   
+    docn_in
+    docn_ocn_in
+    drv_in  
+    ice_in
+    lnd_in
+    ocn_in							#- Take a look on 1st run.
+										#- Only need to change it once (I believe)
+										#- C.Y. Hsu (2017-09-23)
+   
+    rpointer.atm
+    rpointer.docn
+    rpointer.drv
+    rpointer.ocn
+    rpointer.roms					#- rpointer used to restart the model
+										#- It is not affected this routine simulation 
+										#- no reason to change it. 
+										#- C.Y. Hsu (2017-09-23)
+ 
+ -PBS run script  
+    run_cresm.job
+

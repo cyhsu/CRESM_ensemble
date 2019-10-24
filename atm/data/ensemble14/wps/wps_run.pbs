@@ -1,0 +1,30 @@
+#!/bin/bash
+#BSUB -J eWPS_14
+#BSUB -L /bin/bash
+#BSUB -W 12:00
+#BSUB -n 2
+#BSUB -o wps_run.out.%J
+#BSUB -e wps_run.err.%J
+#BSUB -R 'span[ptile=1]'
+#BSUB -P 082866996848
+#BSUB -M 5120                     # sets the per process enforceable memory limit to nnn MB
+
+# load the matlab module
+module load WPS/3.5.1-intel-2015B-dmpar
+module load WRF/3.5.1-intel-2015B-dmpar
+
+CUR_WORK=`pwd`
+./link_grib.csh $CUR_WORK/../*pgrb2*
+./ungrib.exe
+./metgrid.exe
+
+lists=`ls met_em*nc`
+for fid in $lists
+do
+	nfid=`echo $fid | sed 's/:/_/g'`
+	mv $fid $nfid
+done
+
+mpirun ./real.exe
+rm GRIBFILE.* FILE:[0-9][0-9][0-9][0-9]* met_em.d01*nc rsl.[oe]*
+

@@ -1,0 +1,42 @@
+#!/bin/bash
+#- 
+#-		Goals : 
+#-			1. Download GEFS files by wget
+#-			2. Arrange files to ensemble directories
+#-			3. 
+#-		Usage : 
+#-			download.sh $time_01 $time_02  
+#-
+#-		copyright : C.Y. Hsu (TAMU 2017-10-24 1st edit)
+#-----------------------------------------------------------
+echo ''
+echo 'processing : download.sh'
+echo ''
+#-- parameters --
+#WORK_DIR='/home/chsu1/scratch/GOM_FORECAST/cpl/run/routine_run_emsemble/GEFS/atm/tmp'
+WORK_DIR='/home/chsu1/scratch/GOM_FORECAST/cpl/run/routine_run_emsemble/GEFS/atm'
+opts="-N -q"
+
+#-- move to work directory
+cd $WORK_DIR
+
+#-- time calculation begins --
+strtm=$(date +%s)
+
+for hh in {00..240}
+do
+	h1=`echo $hh | sed 's/^0//'`
+	wget $opts "ftp://ftpprd.ncep.noaa.gov:21/pub/data/nccf/com/gens/prod/gefs.20171023/12/pgrb2/gep20.t12z.pgrb2f${h1}"
+done
+
+#-- arrange files to an adopted directory.
+mv gep20* $WORK_DIR/data/ensemble20
+
+#-- time calculation ends --
+endtm=$(date +%s)
+HH=`echo $((endtm-strtm)) | awk '{printf "%02d",int($1/3600)}'`
+MM=`echo $((endtm-strtm)) | awk '{printf "%02d",int(($1%3600)/60)}'`
+SS=`echo $((endtm-strtm)) | awk '{printf "%02d",int($1%60)}'`
+echo "gep20 - Total Time Coast : $HH:$MM:$SS"  >> time_calculation
+#-----------------------------------
+

@@ -1,0 +1,26 @@
+&clm_inparm
+ co2_ppmv = 368.9
+ co2_type = 'constant'
+ create_crop_landunit = .false.
+ dtime = 1800
+ fatmlndfrc = '/pic/scratch/tcraig/IRESM/inputdata/lnd/dlnd7/domain.lnd.us20_us20.20110426.nc'
+ finidat = '/pic/scratch/tcraig/IRESM/inputdata/lnd/clm2/initdata/clmi.us20.init20050101_c120125.nc'
+ fpftcon = '/pic/scratch/tcraig/IRESM/inputdata/lnd/clm2/pftdata/pft-physiology.c110425.nc'
+ fsnowaging = '/pic/scratch/tcraig/IRESM/inputdata/lnd/clm2/snicardata/snicar_drdt_bst_fit_60_c070416.nc'
+ fsnowoptics = '/pic/scratch/tcraig/IRESM/inputdata/lnd/clm2/snicardata/snicar_optics_5bnd_c090915.nc'
+ fsurdat = '/pic/scratch/tcraig/IRESM/inputdata/lnd/clm2/surfdata/surfdata_0230x0350_20110930.nc'
+ hist_nhtfrq = -24
+ maxpatch_glcmec = 0
+ nsegspc = 20
+ urban_hac = 'ON_WASTEHEAT'
+ urban_traffic = .false.
+/
+&ndepdyn_nml
+/
+ do_rtm = .false.
+#!--------------------------------------------------------------------------------------------------------------------------
+#! lnd_in:: Comment:
+#! This namelist was created using the following command-line:
+#!     /pic/projects/regmodel/d3g475/cesm1_1_rasm05/models/lnd/clm/bld/build-namelist -infile /pic/projects/regmodel/d3g475/cesm1_1_rasm05/scripts/r05PF_1979p/Buildconf/clmconf/cesm_namelist -csmdata /pic/scratch/tcraig/IRESM/inputdata -inputdata /pic/projects/regmodel/d3g475/cesm1_1_rasm05/scripts/r05PF_1979p/Buildconf/clm.input_data_list -namelist &clm_inparm  / -ignore_ic_year -res us20 -clm_start_type default -rtm_tstep 10800 -co2_ppmv 368.9 -rtm off -glc_nec 0 -config /pic/projects/regmodel/d3g475/cesm1_1_rasm05/scripts/r05PF_1979p/Buildconf/clmconf/config_cache.xml
+#! For help on options use: /pic/projects/regmodel/d3g475/cesm1_1_rasm05/models/lnd/clm/bld/build-namelist -help
+#!--------------------------------------------------------------------------------------------------------------------------

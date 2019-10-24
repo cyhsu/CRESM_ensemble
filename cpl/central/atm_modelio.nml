@@ -1,0 +1,11 @@
+&modelio
+   diri    = "./"
+   diro    = "./"
+   logfile = "atm.log"
+/
+&pio_inparm
+  pio_stride = -99
+  pio_root   = -99
+  pio_numiotasks = -99
+  pio_typename = 'nothing'
+/

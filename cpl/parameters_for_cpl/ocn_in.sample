@@ -1,0 +1,14 @@
+&ocn_timemgr
+    calendar     = 'GREGORIAN'
+    start_year   = 2017
+    start_month  = 09
+    start_day    = 22
+    start_hour   = 12
+    start_minute = 00
+    start_second = 00
+/
+
+&ocn_io
+    input_script = 'ocean.in'
+    diag_level   = 0
+/

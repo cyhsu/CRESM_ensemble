@@ -1,0 +1,11 @@
+&shr_strdata_nml
+ datamode = 'SSTDATA'
+ domainfile = 'domain.txglo.nc'
+ fillalgo = 'nn'
+ fillmask = 'nomask'
+ mapalgo = 'bilinear'
+ mapmask = 'dstmask'
+ streams = "docn.streams.txt.prescribed 2017 2017 2017"
+ taxmode = 'limit'
+ tintalgo = 'linear'
+/

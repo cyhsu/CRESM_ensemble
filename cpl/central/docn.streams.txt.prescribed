@@ -1,0 +1,46 @@
+<streamstemplate>
+<stream>
+      <comment>
+         Generic Stream description file
+      </comment>
+      <dataSource>
+         GENERIC
+      </dataSource>
+      <domainInfo>
+         <variableNames>
+            time time
+            xc  lon
+            yc  lat
+            area area
+            mask mask
+         </variableNames>
+         <filePath>
+            ./
+         </filePath>
+         <fileNames>
+            domain.txglo.nc
+         </fileNames>
+      </domainInfo>
+      <fieldInfo>
+         <variableNames>
+            SST    t
+         </variableNames>
+         <filePath>
+            ./
+         </filePath>
+         <fileNames>
+            gom03_xroms_sstice.nc
+         </fileNames>
+         <offset>
+            0
+         </offset>
+      </fieldInfo>
+      <!-- Information on the program that created this file -->
+      <build-namelist_documentation>
+         This CCSM stream text file was created by build-namelist using the command line:
+               /pic/projects/regmodel/d3g475/cesm1_1_rasm05/models/ocn/docn/bld/build-namelist -infile /pic/projects/regmodel/d3g475/cesm1_1_rasm05/scripts/r05PF_1979p/Buildconf/docnconf/cesm_namelist   
+         For more information on build-namelist:  
+             /pic/projects/regmodel/d3g475/cesm1_1_rasm05/models/ocn/docn/bld/build-namelist -help          
+      </build-namelist_documentation>
+</stream>
+</streamstemplate>

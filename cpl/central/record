@@ -1,0 +1,49 @@
+
+  drv_in
+==========
+
+	1. change start_ymd = 20100101
+			 to				 20170922 
+										#-- (current model time)
+
+
+	2. change start_tod =     0
+			 to 				 43200	 
+										#-- (current model time 12hr, unit = second)
+										#-- All of my download data will from 12hr.
+										#-- So that only change this once
+
+  ocn_in
+==========
+
+	1. start_year  = 2010 
+						  2017
+	2. start_month = 01
+						  09
+	3. start_day   = 01
+						  22
+	4. start_hour  = 00
+						  12
+
+
+  ocean.in
+============
+
+	1. TIME_REF = 20100101.0d0
+					  20170922.5d0
+
+	2. NTIMES = 8640
+					20160				#-- Always 7 days forecast.
+										#-- only change this once.
+
+  ocean ini/bry
+=================
+
+	1. varinfo = change '.*_time' to 'ocean_time'	#- only change this once.
+
+	2. change ini/bry file
+
+				ocean_time : units = 'days since 1900-01-01 00:00:00'
+		to									'days since ....whenever you want....'
+
+				!!-- Remeber keeps the units the same with TIME_REF will be easy --!!

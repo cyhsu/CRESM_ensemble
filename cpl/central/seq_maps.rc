@@ -1,0 +1,28 @@
+##################################################################
+#
+# seq_maps.rc
+#
+# This is a resource file which lists the names of mapping
+# weight files to use in a sequential CCSM run (mapname).
+# You can also set when data is rearranged in the mapping (maptype).
+#
+# This file is read during the map_model2model_init calls.
+#
+# For maptype:  X = Rearrange the input so that the output
+#                   is on the correct processor.
+#               Y = Rearrange the output and sum partial outputs
+#                   if necessary
+#
+# NOTE:  For bfb on different processor counts, set all maptypes to "X".
+##################################################################
+
+atm2ocnFmapname: './map_a2o_aave.nc'
+atm2ocnFmaptype: 'X'
+atm2ocnSmapname: './map_a2o_blin.nc'
+atm2ocnSmaptype: 'X'
+atm2ocnVmapname: './map_a2o_blin.nc'
+atm2ocnVmaptype: 'X'
+ocn2atmFmapname: './map_o2a_aave.nc'
+ocn2atmFmaptype: 'Y'
+ocn2atmSmapname: './map_o2a_aave.nc'
+ocn2atmSmaptype: 'Y'

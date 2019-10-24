@@ -1,0 +1,15 @@
+#!/bin/bash
+#BSUB -J tst_ftn2
+#BSUB -L /bin/bash
+#BSUB -W 00:10
+#BSUB -n 1
+#BSUB -o wrf_real.out
+#BSUB -e wrf_real.err
+#BSUB -R 'span[ptile=1]'
+#BSUB -P 082866996848
+#BSUB -M 5120                     # sets the per process enforceable memory limit to nnn MB
+
+./gets_run_abc.sh
+
+
+

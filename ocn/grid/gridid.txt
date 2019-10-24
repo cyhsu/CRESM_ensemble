@@ -1,0 +1,11 @@
+# gridid definition file
+#
+id      = GOM_Copernicus
+name    = GOM_Copernicus
+grdfile = /scratch/user/chsu1/GOM_FORECAST/cpl/run/routine_run_emsemble/GEFS/cpl/parameters_for_cpl/gom03_grd_N050_md15m.nc
+N       = 50
+grdtype = roms
+Vtrans  = 4
+theta_s = 10
+theta_b = 2
+Tcline  = 400

@@ -1,0 +1,30 @@
+#!/bin/bash
+#BSUB -J wrf_real
+#BSUB -L /bin/bash
+#BSUB -W 24:00
+#BSUB -n 1
+#BSUB -o wrf_real.out
+#BSUB -e wrf_real.err
+#BSUB -R 'span[ptile=1]'
+#BSUB -P 082866996848
+#BSUB -M 5120                     # sets the per process enforceable memory limit to nnn MB
+
+# load the matlab module
+module load WRF/3.5.1-intel-2015B-dmpar
+
+#- debug 
+./ungrib.exe
+./metgrid.exe
+
+lists=`ls met_em*nc`
+for fid in $lists
+do
+	nfid=`echo $fid | sed 's/:/_/g'`
+	mv $fid $nfid
+done
+
+mpirun ./real.exe
+
+
+
+

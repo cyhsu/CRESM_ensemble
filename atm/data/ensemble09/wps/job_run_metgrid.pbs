@@ -1,0 +1,19 @@
+#!/bin/bash
+#BSUB -J metgrib
+#BSUB -L /bin/bash
+#BSUB -W 24:00
+#BSUB -n 8
+#BSUB -o wps_metgrib.out
+#BSUB -e wps_metgrib.err
+#BSUB -R 'span[ptile=8]'
+#BSUB -P 082866996848
+#BSUB -M 1000                     
+
+# load the matlab module
+module load WPS/3.5.1-intel-2015B-dmpar
+
+./metgrid.exe
+
+
+
+

@@ -1,0 +1,45 @@
+#!/bin/bash
+#BSUB -L /bin/bash
+#BSUB -J egom_08
+#BSUB -o std.out
+#BSUB -e std.err
+#BSUB -W 04:00
+#BSUB -n 180
+#BSUB -R 'span[ptile=20] rusage[mem=2560]'
+#BSUB -P 082866996848
+
+rm -rf TXGLO.*
+
+ulimit -s unlimited
+module purge
+module load wrf-deps/intel-2015B
+module load pnetcdf/1.6.1-intel-2015B
+
+export I_MPI_HYDRA_BOOTSTRAP=lsf
+export I_MPI_LSF_USE_COLLECTIVE_LAUNCH=1
+export I_MPI_HYDRA_BRANCH_COUNT=15
+export PNETCDF_HINTS="striping_unit=16777216"
+export PNETCDF_PATH=/software/tamusc/pnetcdf/1.6.1-intel-2015B
+export PNETCDF=/software/tamusc/pnetcdf/1.6.1-intel-2015B
+
+
+##-- time calculation begins --
+strtm=$(date +%s)
+
+
+mpiexec.hydra ./cresm > cresm.log 2>&1
+
+
+##-- time calculation ends --
+endtm=$(date +%s)
+HH=`echo $((endtm-strtm)) | awk '{printf "%02d",int($1/3600)}'`
+MM=`echo $((endtm-strtm)) | awk '{printf "%02d",int(($1%3600)/60)}'`
+SS=`echo $((endtm-strtm)) | awk '{printf "%02d",int($1%60)}'`
+echo "Total Time Coast : $HH:$MM:$SS"  > Time_Calculation
+#-- Move to share folder --
+abc=`date +"%Y-%m-%d"`
+folder="/scratch/user/chsu1/share/GEFS/${abc}/ensemble08"
+mkdir -p $folder
+mv rsl.[oe]* std.* *.log TXGLO*  $folder/.
+mv ../../atm/data/ensemble08/wps/wps_run.[oe]* $folder/.
+cd /scratch/user/chsu1/share/GEFS; sh ./ocn_file_name.sh

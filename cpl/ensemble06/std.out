@@ -1,0 +1,92 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@nxt1605>
+Subject: Job 7730036: <egom_06> in cluster <Main_Compute> Exited
+
+Job <egom_06> was submitted from host <login3> by user <chsu1> in cluster <Main_Compute>.
+Job was executed on host(s) <20*nxt1605>, in queue <mn_medium>, as user <chsu1> in cluster <Main_Compute>.
+                            <20*nxt1609>
+                            <20*nxt2056>
+                            <20*nxt2057>
+                            <20*nxt1520>
+                            <20*nxt1521>
+                            <20*nxt1140>
+                            <20*nxt2002>
+                            <20*nxt1444>
+</home/chsu1> was used as the home directory.
+</home/chsu1/scratch/GOM_FORECAST/cpl/run/routine_run_emsemble/GEFS/cpl/ensemble06> was used as the working directory.
+Started at Mon Sep  3 23:42:04 2018
+Results reported on Tue Sep  4 01:14:47 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -L /bin/bash
+#BSUB -J egom_06
+#BSUB -o std.out
+#BSUB -e std.err
+#BSUB -W 04:00
+#BSUB -n 180
+#BSUB -R 'span[ptile=20] rusage[mem=2560]'
+#BSUB -P 082866996848
+#BSUB -U chsu1
+rm -rf TXGLO.*
+
+ulimit -s unlimited
+module purge
+module load wrf-deps/intel-2015B
+module load pnetcdf/1.6.1-intel-2015B
+
+export I_MPI_HYDRA_BOOTSTRAP=lsf
+export I_MPI_LSF_USE_COLLECTIVE_LAUNCH=1
+export I_MPI_HYDRA_BRANCH_COUNT=15
+export PNETCDF_HINTS="striping_unit=16777216"
+export PNETCDF_PATH=/software/tamusc/pnetcdf/1.6.1-intel-2015B
+export PNETCDF=/software/tamusc/pnetcdf/1.6.1-intel-2015B
+
+
+##-- time calculation begins --
+strtm=$(date +%s)
+
+
+mpiexec.hydra ./cresm > cresm.log 2>&1
+
+
+##-- time calculation ends --
+endtm=$(date +%s)
+HH=`echo $((endtm-strtm)) | awk '{printf "%02d",int($1/3600)}'`
+MM=`echo $((endtm-strtm)) | awk '{printf "%02d",int(($1%3600)/60)}'`
+SS=`echo $((endtm-strtm)) | awk '{printf "%02d",int($1%60)}'`
+echo "Total Time Coast : $HH:$MM:$SS"  > Time_Calculation
+#-- Move to share folder --
+abc=2018-09-01
+folder="/scratch/user/chsu1/share/GEFS/${abc}/ensemble06"
+mkdir -p $folder
+mv rsl.[oe]* std.* *.log TXGLO*  $folder/.
+mv ../../atm/data/ensemble06/wps/wps_run.[oe]* $folder/.
+cd /scratch/user/chsu1/share/GEFS; sh ./ocn_file_name.sh
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   1110013.88 sec.
+    Max Memory :                                 46226 MB
+    Average Memory :                             44266.78 MB
+    Total Requested Memory :                     460800.00 MB
+    Delta Memory :                               414574.00 MB
+    Max Processes :                              197
+    Max Threads :                                378
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <std.err> for stderr output of this job.
+
