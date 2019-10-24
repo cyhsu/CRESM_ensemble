@@ -25,10 +25,10 @@ source activate chsu1
 export PYROMS_GRIDID_FILE=$WORK_DIR/grid/gridid.txt
 
 ##--  PARAMETER SET UP : ..download process.. --
-motu_dir='/home/chsu1/scratch/GOM_FORECAST/ocn/Copernicus/motu-client-python/'
+motu_dir='YOUR MARINE-Copernicus MOTU-CLIENT-PYTHON-API Location'
 motu_py=$motu_dir"motu-client.py"
-username='chsu1'; 
-password='Gisr@2017'
+username='YOUR USERNAME'; 
+password='YOUR PASSWORD'
 http_m='http://nrtcmems.mercator-ocean.fr/motu-web/Motu'
 http_s='GLOBAL_ANALYSIS_FORECAST_PHY_001_024-TDS'
 http_d='global-analysis-forecast-phy-001-024'
