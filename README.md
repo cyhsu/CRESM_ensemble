@@ -34,5 +34,9 @@ Before Run:
     1. Setup WRF and WPS in atm/data.
     
 The setup of this repository is based on the Texas A&M University Super-Computer ADA.
-
 If you have any problem, please contact with me.
+
+
+
+C.Y. Hsu. (2020, January 31). cyhsu/RCESM_ensemble: CRESM - Ensemble (Version v1.0). Zenodo. http://doi.org/10.5281/zenodo.3633157
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3633157.svg)](https://doi.org/10.5281/zenodo.3633157)
